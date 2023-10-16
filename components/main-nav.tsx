@@ -26,46 +26,25 @@ export default function MainNav() {
       label: 'AudioBooks',
       active: pathName === `/${params}/audiobooks`,
     },
-    {
-      href: `/${params}/admin`,
-      label: 'Admin',
-      active: pathName === `/${params}/admin`,
-    },
   ];
 
   return (
     <nav className='flex items-center space-x-4 lg:space-x-6'>
-      {routes.map((route) =>
-        route.label !== 'Admin' ? (
-          <Link
-            key={route.href}
-            href={route.href}
-            className={cn(
-              'text-sm font-medium transition-colors hover:text-primary',
-              route.active
-                ? 'text-black dark:text-white'
-                : 'text-muted-foreground'
-            )}
-          >
-            {route.label}
-          </Link>
-        ) : (
-          <div className='relative' key={route.href}>
-            <Link
-              href={route.href}
-              className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
-                route.active
-                  ? 'text-black dark:text-white'
-                  : 'text-muted-foreground'
-              )}
-            >
-              {route.label}
-            </Link>
-            {route.active && <AdminMenu />}
-          </div>
-        )
-      )}
+      {routes.map((route) => (
+        <Link
+          key={route.href}
+          href={route.href}
+          className={cn(
+            'text-sm font-medium transition-colors hover:text-primary',
+            route.active
+              ? 'text-black dark:text-white'
+              : 'text-muted-foreground'
+          )}
+        >
+          {route.label}
+        </Link>
+      ))}
+      <AdminMenu />
     </nav>
   );
 }
